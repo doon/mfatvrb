@@ -1,0 +1,3 @@
+== README
+
+This this a simple test app for a  Techvalleyrb talk I plan on giving  
