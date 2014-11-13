@@ -1,0 +1,44 @@
+!!!
+%html{lang: :en}
+  %head
+    %meta{charset: 'utf-8'}
+    %meta{'http-equiv' => "X-UA-Compatible", content: "IE=edge"}
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
+    %title= "Multi-Factor Auth"
+    = csrf_meta_tags
+
+    /[if lt IE 9]
+      = javascript_include_tag "html5shiv"
+      = javascript_include_tag "respond"
+
+    = stylesheet_link_tag "application", :media => "all"
+  %body
+    %div{id: 'wrapper'}
+      .navbar.navbar-static-top.navbar-default{role: 'navigation', style: 'margin-bottom: 0'}
+        .navbar-header
+          %button.navbar-toggle{data: {toggle: "collapse", target:".navbar-collapse"}}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          =link_to "MFA-TVRB", root_url, class: "navbar-brand"
+
+        %ul.nav.navbar-top-links.navbar-right
+          %li.dropdown
+            %a.dropdown-toggle{href: '#', role: 'button', "data-toggle" => 'dropdown'}
+              =glyph('user') + " " + current_user.name
+              %span.caret
+            %ul.dropdown-menu
+              %li= link_to glyph('user') + " User Profile", user_path(current_user)
+              %li.divider
+              %li= link_to glyph('log-out') + " logout", logout_path , method: :delete
+      %div{id: 'page-wrapper', style: 'min-height: 580px;'}
+        .row
+          .col-lg-12
+            = bootstrap_flash
+        .row
+          .col-lg-12
+            = yield
+
+
+    / Javascripts
+    = javascript_include_tag "application"
