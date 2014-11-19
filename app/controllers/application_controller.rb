@@ -7,7 +7,16 @@ class ApplicationController < ActionController::Base
 
   private
   def current_user
-    @current_user ||= User.find_by_auth_token(cookies.signed[:auth_token]) if cookies.signed[:auth_token]
+    @current_user ||= do_auth
+  end
+
+  def do_auth
+    user = User.find_by_auth_token(cookies.signed[:auth_token]) if cookies.signed[:auth_token]
+    if user && user.use2fa? && cookies.signed[:trust_token] != user.trust_token
+      #this user wants to use second factor
+        redirect_to new_two_factor_url
+    end
+    user
   end
 
   helper_method :current_user

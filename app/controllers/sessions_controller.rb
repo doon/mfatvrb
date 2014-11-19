@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
       else
         cookies.signed[:auth_token] = user.auth_token
       end
-      redirect_to(session[:return_to] || root_path , notice: 'Logged in!')
+      redirect_to(session[:return_to] || root_path)
     else
       flash.now.alert = 'Invalid Username or Password'
       render 'new'

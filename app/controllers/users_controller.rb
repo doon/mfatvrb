@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+     @qr = RQRCode::QRCode.new(@user.provisioning_uri("bunnylogin"), :size => 7, :level => :h )
   end
 
   # GET /users/new
@@ -69,6 +70,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :password_digest)
+      params.require(:user).permit(:email,:name,:use2fa,:password, :password_confirmation)
     end
 end

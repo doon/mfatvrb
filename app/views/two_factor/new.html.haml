@@ -1,0 +1,30 @@
+!!!
+%html{lang: :en}
+  %head
+    %meta{ charset: "utf-8"}
+    %meta{'http-equiv' => "X-UA-Compatible", content: "IE=edge"}
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
+    = csrf_meta_tags
+    %title 2 factor Auth Login
+    =stylesheet_link_tag "application", media: "all"
+    =favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
+  %body
+    .container
+      .row
+        .col-md-4.col-md-offset-4
+          .login-panel.panel.panel-default
+            =bootstrap_flash
+            .panel-heading
+              %h3.panel-title Provide Auth
+            .panel-body
+              =form_tag two_factor_index_path do
+                %fieldset
+                  .form-group
+                    =text_field_tag :otp, params[:otp], placeholder: 'OTP', class: 'form-control', autofocus: true
+                  .checkbox
+                    %label
+                      =check_box_tag :trust_computer, 1, params[:trust_computer]
+                      Trust this Computer
+                  %button.btn.btn-large.btn-primary.btn-block{type: 'submit'}
+                    Finish Login
+    =javascript_include_tag "application"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141113044733) do
+ActiveRecord::Schema.define(version: 20141114191528) do
 
   create_table "users", force: true do |t|
     t.string   "email"
@@ -20,6 +20,9 @@ ActiveRecord::Schema.define(version: 20141113044733) do
     t.datetime "updated_at",      null: false
     t.string   "auth_token"
     t.string   "name"
+    t.string   "otp_secret_key"
+    t.boolean  "use2fa"
+    t.string   "trust_token"
   end
 
 end

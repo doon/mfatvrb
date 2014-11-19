@@ -26,6 +26,11 @@ gem 'haml-rails'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+
+gem 'active_model_otp'
+gem 'rqrcode'
+
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
